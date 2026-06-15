@@ -1,0 +1,32 @@
+Vulnerability Name: Vertical Privilege Escalation  
+Severity: High
+Objective: To get the admin access inside the web application and perform unauthorized administrative work.
+Impact: The attacker/or a normal user with no admin rights can get full access to the admin page and perform unauthorized administrative action.
+OWASP Category: A01:2025 – Broken Access Control
+Vulnerable Parameter: Admin parameter
+Vulnerability Description: The application relied on a client-side request parameter to determine administrative privileges. By intercepting and modifying the request, elevated privileges were obtained without proper server-side authorization checks.
+Methodology:
+Step 1 – User Authentication
+        Logged into the application using the provided user credentials.
+Step 2 - Traffic Analysis
+        Next the traffic was taken into Burp Suite and the request parameters were inspected thoroughly.
+        It was observed that the admin parameter was set to false.
+Step 3 - Parameter Manipulation
+        The request was now modified from admin= false to admin=true.
+Step 4 - Authorization Validation
+        This modified request was forwarded and the application was refreshed to check any changes.
+Step 5 - Result
+        The logged in normal user with no admin rights was not able to access the admin panel and make changes to it.
+
+Remediation: 
+Never trust privilege values received from client requests.
+Implement role-based access control.
+Every endpoint request for authorization should be validated from server side before forwarding.
+Never use user-modifiable parameters.
+
+Key Learning: 
+Decisions defining privilege should be verified on the server side and it should never use user-modifiable parameters.
+
+
+Note: 
+Educational writeups based on hands-on PortSwigger Web Security Academy labs covering OWASP Top 10 concepts and remediation approaches.

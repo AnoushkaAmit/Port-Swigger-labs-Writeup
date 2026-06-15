@@ -1,8 +1,8 @@
 Vulnerability Name: Vertical Privilege Escalation  
 Severity: High
+OWASP Category: A01:2025 – Broken Access Control
 Objective: To get the admin access inside the web application and perform unauthorized administrative work.
 Impact: The attacker/or a normal user with no admin rights can get full access to the admin page and perform unauthorized administrative action.
-OWASP Category: A01:2025 – Broken Access Control
 Vulnerable Parameter: Admin parameter
 Vulnerability Description: The application relied on a client-side request parameter to determine administrative privileges. By intercepting and modifying the request, elevated privileges were obtained without proper server-side authorization checks.
 Methodology:

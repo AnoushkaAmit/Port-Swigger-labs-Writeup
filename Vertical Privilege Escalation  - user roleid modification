@@ -1,0 +1,33 @@
+Vulnerability Name: Vertical Privilege Escalation - user roleid modification
+Severity: High
+OWASP Category: A01:2025 – Broken Access Control
+Objective: To get the admin access by logging in as a normal user and modifying a role-related parameter in a user request.
+Impact: A normal user with no user rights getting unauthorized administrative capabilities, which result in access to sensitive information.
+Methodology:
+Step 1 – User Authentication
+        Logged into the application using the provided user credentials.
+Step 2 - Traffic Analysis
+        The profile update functionality was access and the traffic was intercepted using Burp Suite.
+Step 3 – Parameter Analysis
+        It was observed that role-related information was present with the request. Original Value: roleid = 1
+Step 4 - Parameter Manipulation
+        The role id was modified from roleid = 1 to roleid = 2.
+Step 5 - Forwarding the request
+        This modified request was then forwarded and the application was refreshed.
+Step 6 - Result
+        The administration functionality was now available in the normal user's account. 
+
+Remediation: 
+Never trust privilege values received from client requests.
+Implement role-based access control.
+Every endpoint request for authorization should be validated from server side before forwarding.
+Never use user-modifiable parameters.
+
+Key Learning: 
+Decisions defining privilege should be verified on the server side and it should never use user-modifiable parameters.
+
+
+
+
+Note: 
+Educational writeups based on hands-on PortSwigger Web Security Academy labs covering OWASP Top 10 concepts and remediation approaches.

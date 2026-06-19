@@ -2,7 +2,7 @@ Vulnerability Name: Vertical Privilege Escalation - user roleid modification
 Severity: High
 OWASP Category: A01:2025 – Broken Access Control
 Objective: To get the admin access by logging in as a normal user and modifying a role-related parameter in a user request.
-Impact: A normal user with no user rights getting unauthorized administrative capabilities, which result in access to sensitive information.
+Impact: A normal user with no admin rights getting unauthorized administrative capabilities, which result in access to sensitive information.
 Methodology:
 Step 1 – User Authentication
         Logged into the application using the provided user credentials.

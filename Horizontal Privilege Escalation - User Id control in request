@@ -1,0 +1,33 @@
+Vulnerability Name: Horizontal Privilege Escalation - User Id control in request
+Severity: High
+OWASP Category: A01:2025 – Broken Access Control
+Objective: To gain full access into another user's account agfter logging in into one account.
+Impact: A user can get full access to another user’s account and perform activites they are unauthorised to do.
+Step 1 – User Authentication
+        Logged into the application using the provided user credentials.
+Step 2 - Request Interception
+        Entered a test email in the Update Email section and intercepted the request using Burp           Suite.
+Step 3 – Parameter Analysis
+        It was observed that User id information was present with the request. Original Value:            id = wiener
+Step 4 - Parameter Manipulation
+        The user id was modified from id = wiener to id = carlos.
+Step 5 - Forwarding the request
+        This modified request was then forwarded and the application was refreshed.
+Step 6 - Result
+        The access to carlos' account was successfully obtained. 
+
+Remediation: 
+Enforce server-side authorization checks for every request.
+Never rely on user-controlled identifiers for access decisions.
+Validate ownership of resources before processing requests.
+Implement proper access control policies using authenticated session data.
+Apply the principle of least privilege.
+
+Key Learning: 
+Access control decisions should always be validated on the server side. User identifiers received from client requests should never determine authorization privileges.
+
+
+
+
+Note: 
+Educational writeups based on hands-on PortSwigger Web Security Academy labs covering OWASP Top 10 concepts and remediation approaches.

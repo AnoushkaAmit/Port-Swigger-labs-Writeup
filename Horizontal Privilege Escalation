@@ -1,0 +1,45 @@
+Vulnerability Name: Horizontal Privilege Escalation
+
+Severity: High
+
+OWASP Category: A01:2025 – Broken Access Control
+
+Objective:
+To gain unauthorized access to another user's account information by modifying an API-related parameter in the request.
+
+Impact:
+An authenticated user can obtain unauthorized access to another user’s account and potentially access or modify sensitive account information.
+
+Methodology:
+Step 1 – User Authentication
+          Logged into the application using the provided credentials.
+          Successful login was observed for the user wiener.
+
+Step 2 – Request Interception
+          Entered a test email in the Update Email section and intercepted the request using               Burp Suite.
+
+Step 3 – Parameter Analysis
+          Sent the intercepted request to Repeater observed that the User id information was               present with the request. Original Value: id = wiener
+
+Step 4 – Parameter Manipulation
+         The user id was modified from id = wiener to id = carlos.
+
+Step 5 – Forwarding the Request
+        Forwarded the modified request and observed the application response.
+
+Step 6 – Result
+Access was successfully obtained to Carlos’s account. Now the user wiener also has the rights of user Carlos. 
+
+Remediation:
+Enforce authorization checks on the server side for every request.
+Never trust API keys or identifiers received directly from client requests for access decisions.
+Validate ownership of resources before granting access.
+Implement secure access control mechanisms for APIs.
+Follow the principle of least privilege.
+Key Learning:
+
+Authentication identifies the user, but authorization determines what the user can access. API parameters should never be trusted for access control decisions without server-side validation.
+
+Note:
+
+Educational writeup based on hands-on PortSwigger Web Security Academy labs covering OWASP Top 10 concepts and remediation approaches.
